@@ -1,0 +1,83 @@
+:root {
+  --black: #000000;
+  --green: #799244;
+  --yellow-light: #fffa7d;
+  --yellow: #f1fd6f;
+  --white: #FFFFFF;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--black);
+  color: var(--black);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.card {
+  background-color: var(--green);
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card-title {
+  color: var(--white);
+  font-weight: 600;
+  font-weight: bold;
+}
+
+.card-text {
+  color: var(--black);
+}
+
+img.card-img-top {
+  height: 300px;
+  object-fit: contain;
+  object-position: center;
+  padding: 1rem;
+  border-radius: 1rem 1rem 0 0;
+}
+
+
+.btn-primary-custom {
+  background-color: var(--yellow);
+  color: var(--black);
+  border: none;
+}
+
+.btn-primary-custom:hover {
+  background-color: var(--green);
+}
+
+.btn-secondary-custom {
+  background-color: var(--yellow);
+  color: var(--black);
+  border: none;
+}
+
+.btn-secondary-custom:hover {
+  background-color: var(--green);
+}
+
+.input-custom {
+  border: 1px solid var(--yellow);
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  outline: none;
+  width: 100%;
+  max-width: 400px;
+}
+
+.input-custom:focus {
+  border-color: var(--yellow-light);
+  box-shadow: 0 0 5px var(--yellow);
+}
