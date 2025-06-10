@@ -1,5 +1,5 @@
 <template>
-  <div class="min-vh-100 py-5">
+  <div class="min-vh-100 py-2">
     <AppFrame />
     <h1 class="text-center" style="color: var(--yellow-light);">¡Carrito!</h1>
   </div>

@@ -1,5 +1,5 @@
-<template id="productos">
-  <div class="min-vh-100 py-3">
+<template>
+  <div class="min-vh-100 py-2">
     <AppFrame></AppFrame>
     <h1 class="text-center fw-bold my-4" style="color: var(--yellow-light);"><i class="bi bi-bag"></i> Catálogo de Productos</h1>
 
