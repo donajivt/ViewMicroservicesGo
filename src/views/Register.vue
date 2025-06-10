@@ -10,7 +10,7 @@
       <button type="submit" class="primary-btn">Registrarse</button>
     </form>
 
-    <button class="secondary-btn" @click="$router.push('/')">¿Ya tienes cuenta? Inicia sesión</button>
+    <button class="secondary-btn" @click="$router.push('/login')">¿Ya tienes cuenta? Inicia sesión</button>
 
     <p v-if="message" class="message">{{ message }}</p>
   </div>

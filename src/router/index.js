@@ -2,15 +2,21 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import ProductCatalog from '../views/ProductCatalog.vue';
+import ProductsView from '../views/ProductsView.vue';
 import Carrito from '../views/CarritoView.vue';
 import Cupones from '../views/CuponesView.vue';
 
 const routes = [
-  { path: '/', component: Login },
+  { path: '/login', component: Login },
   { path: '/register', component: Register },
   {
-    path: '/products',
+    path: '/',
     component: ProductCatalog,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/products',
+    component: ProductsView,
     meta: { requiresAuth: true }
   },
   {
