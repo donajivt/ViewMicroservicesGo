@@ -5,6 +5,7 @@ import ProductCatalog from '../views/ProductCatalog.vue';
 import ProductsView from '../views/ProductsView.vue';
 import Carrito from '../views/CarritoView.vue';
 import Cupones from '../views/CuponesView.vue';
+import AddEditProductView from '../views/AddEditProductView.vue'
 
 const routes = [
   { path: '/login', component: Login },
@@ -18,6 +19,17 @@ const routes = [
     path: '/products',
     component: ProductsView,
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/products/add',
+    component: AddEditProductView,
+    meta: { requiresAuth: true, isEdit: false }
+  },
+  {
+    path: '/products/edit/:id',
+    component: AddEditProductView,
+    meta: { requiresAuth: true, isEdit: true },
+    props: true
   },
   {
     path: '/carrito',

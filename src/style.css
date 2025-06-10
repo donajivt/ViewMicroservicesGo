@@ -105,7 +105,7 @@ h2 {
   text-align: center;
   margin-bottom: 25px;
   font-weight: 700;
-  color: var(--green);
+  color: var(--yellow);
   letter-spacing: 1.2px;
   width: 100%;
 }
@@ -262,8 +262,8 @@ h2 {
 }
 
 .btn-add {
-  background-color: var(--green);
-  color: white;
+  background-color: var(--yellow);
+  color: var(--black);
   border: none;
 }
 
@@ -293,8 +293,8 @@ h2 {
 }
 
 .btn-action {
-  background-color: var(--yellow);
-  color: var(--black);
+  background-color: var(--green);
+  color: var(--white);
   border: none;
   width: 2.5rem;
   height: 2.5rem;
@@ -329,7 +329,7 @@ h2 {
 .detail-alert {
   background-color: #e2f0fd;
   border-color: #b8d4f8;
-  color: #0c63e4;
+  color: var(--green);
 }
 
 .page-link {
@@ -349,4 +349,21 @@ h2 {
 .items-per-page {
   width: auto;
   display: inline-block;
+}
+.product-form {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 200px;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.form-label {
+  font-weight: 600;
 }

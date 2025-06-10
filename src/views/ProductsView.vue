@@ -190,11 +190,11 @@ const eliminarProducto = async (id) => {
 };
 
 const editarProducto = (id) => {
-  router.push(`/editar/${id}`);
+  router.push(`/products/edit/${id}`);
 };
 
 const agregarProducto = () => {
-  router.push(`/agregar`);
+  router.push(`/products/add`);
 };
 
 onMounted(() => {

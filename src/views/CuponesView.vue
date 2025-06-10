@@ -1,7 +1,9 @@
 <template>
-  <div class="min-vh-100 py-2">
+  <div class="min-vh-100 my-2">
     <AppFrame />
-    <h1 class="text-center" style="color: var(--yellow-light);">¡Cupones!</h1>
+    <div class="mt-4">
+      <h2 class="text-center mb-4">¡Cupones!</h2>
+    </div>
   </div>
 </template>
 
