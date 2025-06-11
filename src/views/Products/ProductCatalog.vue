@@ -61,8 +61,8 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import ProductCard from '../components/ProductCard.vue';
-import AppFrame from '../components/AppFrame.vue';
+import ProductCard from '../../components/ProductCard.vue';
+import AppFrame from '../../components/AppFrame.vue';
 
 const productos = ref([]);
 const searchTerm = ref("");

@@ -109,7 +109,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
-import AppFrame from '../components/AppFrame.vue';
+import AppFrame from '../../components/AppFrame.vue';
 import { useRouter } from 'vue-router';
 
 const cupones = ref([]);

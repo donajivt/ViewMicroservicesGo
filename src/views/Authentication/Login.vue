@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { login } from '../services/authService';
+import { login } from '../../services/authService';
 export default {
   data() {
     return {

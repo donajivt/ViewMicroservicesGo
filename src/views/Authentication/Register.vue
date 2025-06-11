@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { register } from '../services/authService';
+import { register } from '../../services/authService';
 export default {
   data() {
     return {

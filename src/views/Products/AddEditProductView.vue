@@ -72,7 +72,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import AppFrame from '../components/AppFrame.vue';
+import AppFrame from '../../components/AppFrame.vue';
 
 const route = useRoute();
 const router = useRouter();

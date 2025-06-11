@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Login from '../views/Login.vue';
+import Login from '../views/Authentication/Login.vue';
 import Home from '../views/Home.vue';
-import Register from '../views/Register.vue';
-import ProductCatalog from '../views/ProductCatalog.vue';
-import ProductsView from '../views/ProductsView.vue';
+import Register from '../views/Authentication/Register.vue';
+import ProductCatalog from '../views/Products/ProductCatalog.vue';
+import ProductsView from '../views/Products/ProductsView.vue';
 import Carrito from '../views/CarritoView.vue';
-import Cupones from '../views/CuponesView.vue';
-import AddEditProductView from '../views/AddEditProductView.vue'
-import AdminCouponsView from '../views/AdminCouponsView.vue';
+import Cupones from '../views/Coupons/CouponsView.vue';
+import AddEditProductView from '../views/Products/AddEditProductView.vue';
+import AdminCouponsView from '../views/Coupons/AdminCouponsView.vue';
+import AddEditCouponView from '../views/Coupons/AddEditCouponView.vue';
 
 const routes = [
   { path: '/login', component: Login },
@@ -48,7 +49,18 @@ const routes = [
     path: '/coupons',
     component: AdminCouponsView,
     meta: { requiresAuth: true }
-  }
+  },
+  {
+    path: '/coupons/add',
+    component: AddEditCouponView,
+    meta: { requiresAuth: true, isEdit: false }
+  },
+  {
+    path: '/coupons/edit/:id',
+    component: AddEditCouponView,
+    meta: { requiresAuth: true, isEdit: true },
+    props: true
+  },
 ];
 
 const router = createRouter({

@@ -8,5 +8,5 @@
 </template>
 
 <script setup>
-import AppFrame from '../components/AppFrame.vue';
+import AppFrame from '../../components/AppFrame.vue';
 </script>

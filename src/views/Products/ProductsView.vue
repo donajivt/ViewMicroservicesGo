@@ -90,8 +90,8 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
-import AppFrame from '../components/AppFrame.vue';
-import ProductCard from '../components/ProductCard.vue';
+import AppFrame from '../../components/AppFrame.vue';
+import ProductCard from '../../components/ProductCard.vue';
 import { useRouter } from 'vue-router';
 
 const productos = ref([]);
