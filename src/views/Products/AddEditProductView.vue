@@ -125,7 +125,6 @@ onMounted(async () => {
   }
 });
 
-// Manejar subida de imagen
 const handleImageUpload = (event) => {
   const file = event.target.files[0];
   if (file) {
@@ -133,38 +132,34 @@ const handleImageUpload = (event) => {
     const reader = new FileReader();
     reader.onload = (e) => {
       previewImage.value = e.target.result;
-      usingLocalImage.value = true;
     };
     reader.readAsDataURL(file);
-
-    // Guardar archivo para enviar al servidor
+    
+    // Agregar al FormData
     product.value.image_file = file;
+    product.value.image_url = ''; 
   }
 };
 
-// Enviar formulario
 const submitForm = async () => {
   try {
     const formData = new FormData();
-
-    // Agregar campos al FormData
+    
+    // Agregar todos los campos al FormData
     formData.append('name', product.value.name);
     formData.append('price', product.value.price);
     formData.append('description', product.value.description);
     formData.append('category_name', product.value.category_name);
     formData.append('stock', product.value.stock);
     
-    // Mantener la URL de imagen si existe y no se subió archivo
-    if (product.value.image_url && !product.value.image_file) {
+    // Agregar imagen si existe
+    if (product.value.image_file) {
+      formData.append('image', product.value.image_file);
+    } else if (product.value.image_url) {
       formData.append('image_url', product.value.image_url);
     }
     
-    // Agregar archivo de imagen si existe
-    if (product.value.image_file) {
-      formData.append('image', product.value.image_file);
-    }
-
-    const url = isEditing.value
+    const url = isEditing.value 
       ? `http://localhost:2222/api/products/${route.params.id}`
       : 'http://localhost:2222/api/products/';
 
