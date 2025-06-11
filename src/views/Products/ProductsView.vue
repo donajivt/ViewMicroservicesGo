@@ -6,8 +6,8 @@
       <div class="row g-3 align-items-center">
         <div class="col-md-6">
           <div class="input-group">
-            <input v-model="searchId" class="form-control search-input" placeholder="Buscar por ID..." />
-            <button @click="verDetallesPorId" class="btn btn-search">
+            <input v-model="searchName" class="form-control search-input" placeholder="Buscar por nombre..." />
+            <button @click="verDetallesPorNombre" class="btn btn-search">
               <i class="bi bi-search"></i> Buscar
             </button>
           </div>
@@ -38,7 +38,7 @@
         <tbody>
           <tr v-for="prod in paginatedProducts" :key="prod.product_id">
             <td>{{ prod.name }}</td>
-            <td :class="{'low-stock': prod.stock < 5}">{{ prod.stock }}</td>
+            <td :class="{ 'low-stock': prod.stock < 5 }">{{ prod.stock }}</td>
             <td>{{ prod.category_name }}</td>
             <td class="text-end">
               <button class="btn btn-sm btn-action me-2" @click="verDetalles(prod.product_id)">
@@ -58,13 +58,13 @@
 
     <nav v-if="totalPages > 1" class="mt-4">
       <ul class="pagination justify-content-center">
-        <li class="page-item" :class="{disabled: currentPage === 1}">
+        <li class="page-item" :class="{ disabled: currentPage === 1 }">
           <button class="page-link" @click="prevPage">&laquo;</button>
         </li>
-        <li class="page-item" v-for="page in totalPages" :key="page" :class="{active: currentPage === page}">
+        <li class="page-item" v-for="page in totalPages" :key="page" :class="{ active: currentPage === page }">
           <button class="page-link" @click="goToPage(page)">{{ page }}</button>
         </li>
-        <li class="page-item" :class="{disabled: currentPage === totalPages}">
+        <li class="page-item" :class="{ disabled: currentPage === totalPages }">
           <button class="page-link" @click="nextPage">&raquo;</button>
         </li>
       </ul>
@@ -96,7 +96,7 @@ import { useRouter } from 'vue-router';
 
 const productos = ref([]);
 const productoDetalle = ref(null);
-const searchId = ref("");
+const searchName = ref("");
 const router = useRouter();
 
 // Variables de paginación
@@ -168,6 +168,22 @@ const verDetalles = async (id) => {
 const verDetallesPorId = () => {
   if (searchId.value.trim()) {
     verDetalles(searchId.value.trim());
+  }
+};
+
+const verDetallesPorNombre = () => {
+  const termino = searchName.value.trim().toLowerCase();
+  if (!termino) return;
+
+  const producto = productos.value.find(p =>
+    p.name.toLowerCase().includes(termino)
+  );
+
+  if (producto) {
+    verDetalles(producto.product_id);
+  } else {
+    alert("Producto no encontrado");
+    productoDetalle.value = null;
   }
 };
 

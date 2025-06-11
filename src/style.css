@@ -351,7 +351,7 @@ h2 {
   width: auto;
   display: inline-block;
 }
-.product-form {
+.add-edit-form {
   background-color: #fff;
   padding: 2rem;
   border-radius: 0.5rem;
@@ -365,3 +365,45 @@ h2 {
   margin-top: 0.5rem;
 }
 
+.coupon-card {
+  background: var(--green);
+  border: 2px dashed var(--yellow);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+.coupon-card:hover {
+  transform: scale(1.02);
+}
+.coupon-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+.star-icon {
+  color: var(--yellow);
+  font-size: 2rem;
+  margin-right: 0.5rem;
+}
+.coupon-code {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: var(--white);
+}
+.coupon-body {
+  margin-top: 1rem;
+}
+.coupon-amount {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--yellow-light);
+}
+.coupon-minimum,
+.coupon-validity {
+  font-size: 0.9rem;
+  color: var(--white);
+}

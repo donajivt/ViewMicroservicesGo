@@ -2,7 +2,7 @@
   <AppFrame />
   <div class="container mt-4">
     <h2 class="mb-4">{{ isEditing ? 'Editar Producto' : 'Agregar Nuevo Producto' }}</h2>
-    <form @submit.prevent="submitForm" class="product-form" enctype="multipart/form-data">
+    <form @submit.prevent="submitForm" class="add-edit-form" enctype="multipart/form-data">
       <div class="row">
         <!-- Columna izquierda -->
         <div class="col-md-6">
