@@ -40,6 +40,7 @@ export default {
           role: this.role
         });
         this.message = 'Registro exitoso. Ahora inicia sesión.';
+        this.$router.push('/login');
       } catch (err) {
         this.message = 'Error al registrarse.';
       }

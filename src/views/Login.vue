@@ -28,7 +28,7 @@ export default {
       try {
         const response = await login({ userName: this.email, password: this.password });
         localStorage.setItem('token', response.data.result.token);
-        this.$router.push('/');
+        this.$router.push('/home');
       } catch (err) {
         this.error = 'Credenciales inválidas';
       }

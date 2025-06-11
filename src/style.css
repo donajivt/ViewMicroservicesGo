@@ -4,6 +4,7 @@
   --yellow-light: #fffa7d;
   --yellow: #f1fd6f;
   --white: #FFFFFF;
+  --purple: #6f42c1;
 }
 
 html {
@@ -364,6 +365,3 @@ h2 {
   margin-top: 0.5rem;
 }
 
-.form-label {
-  font-weight: 600;
-}

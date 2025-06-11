@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand navbar-light bg-light shadow-sm sticky-top">
     <div class="container">
-      <router-link class="navbar-brand fw-bold" style="color: var(--green);" to="/products">
+      <router-link class="navbar-brand fw-bold" style="color: var(--green);" to="/home">
         <i class="bi bi-bag-heart-fill"></i> VDVT ♡
       </router-link>
       <button
@@ -17,16 +17,19 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <router-link class="nav-link" to="/">Home</router-link>
+            <router-link class="nav-link" to="/home">Home</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/carrito">Carrito</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/cupones">Coupons</router-link>
+            <router-link class="nav-link" to="/couponsUser">Coupons</router-link>
           </li>
           <li class="nav-item" v-if="isAdmin">
             <router-link class="nav-link" to="/products">Admin Products</router-link>
+          </li>
+          <li class="nav-item" v-if="isAdmin">
+            <router-link class="nav-link" to="/coupons">Admin Coupons</router-link>
           </li>
           <li class="nav-item" v-if="isLoggedIn">
             <button class="btn btn-link nav-link text-decoration-none text-danger" @click="logout">
@@ -63,6 +66,6 @@ const logout = () => {
   localStorage.removeItem("token");
   isLoggedIn.value = false;
   isAdmin.value = false;
-  router.push("/login");
+  router.push("/");
 };
 </script>

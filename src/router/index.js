@@ -1,17 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Login from '../views/Login.vue';
+import Home from '../views/Home.vue';
 import Register from '../views/Register.vue';
 import ProductCatalog from '../views/ProductCatalog.vue';
 import ProductsView from '../views/ProductsView.vue';
 import Carrito from '../views/CarritoView.vue';
 import Cupones from '../views/CuponesView.vue';
 import AddEditProductView from '../views/AddEditProductView.vue'
+import AdminCouponsView from '../views/AdminCouponsView.vue';
 
 const routes = [
   { path: '/login', component: Login },
   { path: '/register', component: Register },
+  { path: '/', component: Home },
   {
-    path: '/',
+    path: '/home',
     component: ProductCatalog,
     meta: { requiresAuth: true }
   },
@@ -37,8 +40,13 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/cupones',
+    path: '/couponsUser',
     component: Cupones,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/coupons',
+    component: AdminCouponsView,
     meta: { requiresAuth: true }
   }
 ];
@@ -53,7 +61,7 @@ router.beforeEach((to, from, next) => {
   const isAuthenticated = !!localStorage.getItem('token');
 
   if (to.meta.requiresAuth && !isAuthenticated) {
-    next('/login');
+    next('/');
   } else {
     next();
   }

@@ -101,7 +101,7 @@ const router = useRouter();
 
 // Variables de paginación
 const currentPage = ref(1);
-const itemsPerPage = ref(10);
+const itemsPerPage = ref(5);
 
 // Computed properties para paginación
 const totalPages = computed(() => Math.ceil(productos.value.length / itemsPerPage.value));
