@@ -407,3 +407,30 @@ h2 {
   font-size: 0.9rem;
   color: var(--white);
 }
+
+.border-yellow {
+  border: 1px solid var(--yellow);
+}
+
+.btn-yellow {
+  background-color: var(--yellow);
+  color: var(--black);
+  border: none;
+  font-weight: 500;
+}
+
+.btn-yellow:hover {
+  background-color: #e0a800;
+  color: var(--black);
+}
+
+.summary-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.5em;
+}

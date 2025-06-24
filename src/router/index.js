@@ -4,7 +4,7 @@ import Home from '../views/Home.vue';
 import Register from '../views/Authentication/Register.vue';
 import ProductCatalog from '../views/Products/ProductCatalog.vue';
 import ProductsView from '../views/Products/ProductsView.vue';
-import Carrito from '../views/CarritoView.vue';
+import Carrito from '../views/ShoppingCart/CarritoView.vue';
 import Cupones from '../views/Coupons/CouponsView.vue';
 import AddEditProductView from '../views/Products/AddEditProductView.vue';
 import AdminCouponsView from '../views/Coupons/AdminCouponsView.vue';
