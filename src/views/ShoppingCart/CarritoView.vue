@@ -2,15 +2,14 @@
   <AppFrame />
   <div class="min-vh-100 my-2 background">
     <div class="container mt-4">
-      <h2>¡Carrito VDVT ♡</h2>
-      
+      <h2>Carrito de {{ cart?.cartHeaderDto?.name || 'Usuario' }} ♡</h2>
       <div v-if="loading" class="text-center">
         <div class="spinner-border text-yellow" role="status">
           <span class="visually-hidden">Cargando...</span>
         </div>
         <p class="text-white mt-2">Cargando tu carrito de compras...</p>
       </div>
-      
+
       <div v-else>
         <div v-if="!cart || cart.cartDetailsDtos.length === 0" class="text-center text-white py-5">
           <i class="bi bi-cart-x display-4 text-yellow"></i>
@@ -29,7 +28,7 @@
                 <div class="card-body">
                   <h5 class="card-title text-center">{{ item.productDto.name }}</h5>
                   <p class="card-text">{{ item.productDto.description }}</p>
-                  
+
                   <div class="d-flex justify-content-between align-items-center mt-3">
                     <div>
                       <p class="mb-1 text-white">Precio: <span class="card-text">${{ item.productDto.price.toFixed(2) }}</span></p>
@@ -46,22 +45,26 @@
 
           <div class="summary-container bg-dark text-white p-4 mt-5 rounded border-yellow">
             <h4 class="text-yellow mb-4">Resumen del Pedido</h4>
-            
+
             <div class="d-flex justify-content-between mb-2">
               <span>Subtotal:</span>
               <span>${{ cart.cartHeaderDto.cartTotal.toFixed(2) }}</span>
             </div>
-            
+
+            <div v-if="cart.cartHeaderDto.couponCode && cart.cartHeaderDto.discount === 0" class="alert alert-warning mt-3">
+              El cupón <strong>{{ cart.cartHeaderDto.couponCode }}</strong> no cumple con los requisitos para aplicarse.
+            </div>
+
             <div v-if="cart.cartHeaderDto.discount > 0" class="d-flex justify-content-between mb-2 text-green">
               <span>Descuento ({{ cart.cartHeaderDto.couponCode }}):</span>
               <span>-${{ cart.cartHeaderDto.discount.toFixed(2) }}</span>
             </div>
-            
+
             <div class="d-flex justify-content-between mt-3 pt-3 border-top border-secondary">
               <strong>Total:</strong>
               <strong class="text-yellow">${{ (cart.cartHeaderDto.cartTotal - cart.cartHeaderDto.discount).toFixed(2) }}</strong>
             </div>
-            
+
             <div class="d-grid gap-2 mt-4">
               <button class="btn btn-yellow btn-lg" @click="checkout">
                 <i class="bi bi-bag-check"></i> Proceder al Pago
@@ -113,44 +116,8 @@ async function fetchCart() {
     );
 
     if (response.data.is_success) {
-      const cartData = response.data.result;
-
-      // 🔁 Obtener los productos uno por uno
-      const enrichedDetails = await Promise.all(
-        cartData.cartDetailsDtos.map(async (detail) => {
-          try {
-            const productRes = await axios.get(
-              `http://localhost:2222/api/products/${detail.productId}`,
-              {
-                headers: { Authorization: `Bearer ${token}` }
-              }
-            );
-
-            return {
-              ...detail,
-              productDto: productRes.data.result // o response.data, depende de tu API
-            };
-          } catch (e) {
-            console.error(`❌ Error al obtener producto ${detail.productId}:`, e);
-            return {
-              ...detail,
-              productDto: {
-                name: 'Producto no encontrado',
-                description: '',
-                price: 0,
-                image_url: ''
-              }
-            };
-          }
-        })
-      );
-
-      cart.value = {
-        ...cartData,
-        cartDetailsDtos: enrichedDetails
-      };
-
-      console.log('🛒 Carrito enriquecido:', cart.value);
+      cart.value = response.data.result;
+      console.log('🛒 Carrito obtenido:', cart.value);
     }
   } catch (err) {
     console.error('❌ Error al obtener el carrito:', err);
@@ -161,7 +128,7 @@ async function fetchCart() {
 
 async function removeFromCart(cartDetailsId) {
   if (!confirm('¿Estás seguro de eliminar este producto del carrito?')) return;
-  
+
   const token = localStorage.getItem('token');
   try {
     const response = await axios.post(

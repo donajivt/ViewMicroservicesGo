@@ -45,11 +45,43 @@ export default {
         alert("Debes iniciar sesión para agregar productos al carrito.");
         return;
       }
-      console.log("🧩 Producto recibido:", this.product);
+
+      let couponCode = "";
+
+      try {
+        const couponRes = await axios.get("http://localhost:7777/api/coupons/", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        if (couponRes.data.is_success) {
+          const allCoupons = couponRes.data.result;
+          const currentDate = new Date();
+
+          // Buscar cupón válido por categoría
+          const validCoupon = allCoupons.find(coupon => {
+            const isSameCategory = coupon.category === this.product.category_name;
+            const isActive = coupon.stateCoupon === true;
+            const startDate = new Date(coupon.dateInit);
+            const endDate = new Date(coupon.dateEnd);
+
+            return isSameCategory && isActive && currentDate >= startDate && currentDate <= endDate;
+          });
+
+          if (validCoupon) {
+            couponCode = validCoupon.couponCode;
+          }
+        }
+      } catch (err) {
+        console.warn("⚠️ No se pudo obtener cupones:", err);
+        // Puedes continuar sin cupón si hay error
+      }
+
       const cartDto = {
         cartHeaderDto: {
           userId: user.userId,
-          couponCode: "TSHIRT15",
+          couponCode: couponCode,
           name: user.name,
           phone: user.phone,
           email: user.email
